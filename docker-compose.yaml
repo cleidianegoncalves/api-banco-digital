@@ -1,0 +1,19 @@
+version: '3'
+services:
+  web:
+    container_name: banco-digital-webserver
+    image: hitalos/laravel:latest
+    ports:
+        - 80:80
+    volumes:
+        - ./:/var/www
+  cooper-database:
+    container_name: banco-digital-database
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "321321"
+      MYSQL_DATABASE: "banco_digital"
+    volumes:
+      - ./docker/database:/var/lib/mysql
