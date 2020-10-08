@@ -1,13 +1,13 @@
 version: '3'
 services:
-  web:
+  app:
     container_name: banco-digital-webserver
-    image: hitalos/laravel:latest
+    build: docker
     ports:
-        - 80:80
+        - 8080:80
     volumes:
-        - ./:/var/www
-  cooper-database:
+        - ./:/app
+  database:
     container_name: banco-digital-database
     image: mysql:5.7
     ports:

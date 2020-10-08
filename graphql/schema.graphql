@@ -5,41 +5,20 @@ scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
 
 type Query {
-    users: [User!]! @paginate(defaultCount: 10)
-    user(id: ID @eq): User @find
-}
-
-type User {
-    id: ID!
-    name: String!
-    email: String!
-    created_at: DateTime!
-    updated_at: DateTime!
-}
-
-type Mutation {
-  createUser(
-    name: String!
-    email: String! @rules(apply: ["email", "unique:users"])
-    password: String! @bcrypt @rules(apply: ["min:6"])
-  ): User @create
-}
-
-type Query {
-    contas: [Conta!]! @paginate(defaultCount: 10)
-    saldo(conta: [Int] @eq): Conta! @find
+    saldo(conta: Int!): Float! @field(resolver: "ContaQuery@saldo")
 }
 
 type Conta {
     id: ID!
-    conta: [Int]
+    conta: Int!
     saldo: Float!
 }
 
 type Mutation {
-    create(conta: [Int], saldo: Float!): Conta! 
-    @field(resolver: "ContaMutator@create")
+    sacar(conta: Int!, valor: Float!): Conta
+    @field(resolver: "ContaMutator@saque")
 
-    sacar(conta: String!, saldo: String!): Conta! 
-    @field(resolver: "ContaMutator@create")
+    depositar(conta: Int!, valor: Float!): Conta
+    @field(resolver: "ContaMutator@deposito")
+
 }
