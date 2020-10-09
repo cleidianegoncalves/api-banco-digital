@@ -80,7 +80,7 @@ mutation {
 
 ## Executando Teste Unitario
 
-Para testar a aplicação utlizamos o PHPUnit, através do comando:
+Para testar a aplicação utilizamos o PHPUnit, através do comando:
 
 ```
 vendor/bin/phpunit
