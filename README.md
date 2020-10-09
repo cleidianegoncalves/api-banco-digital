@@ -2,12 +2,12 @@
 # Api Banco Digital
 > Projeto que simula operações de um banco digital
 
-Api que simula operações de um banco digital, utilizando framework Laravel e arquitetura GraphQl.
+API que simula operações de um banco digital, utilizando framework Laravel e arquitetura GraphQl.
 
 ## Instalação
 ### Pré requisitos
 
-Para executar o projeto é ncessário ter:
+Para executar o projeto é necessário ter:
 
 ```
 Docker Desktop (ou docker tools)
@@ -78,7 +78,7 @@ mutation {
 }
 ```
 
-## Executando Teste Unitario
+## Executando Teste Unitário
 
 Para testar a aplicação utilizamos o PHPUnit, através do comando:
 
