@@ -4,7 +4,7 @@
 
 Api que simula operações de um banco digital, utilizando framework Laravel e arquitetura GraphQl.
 
-## Instação
+## Instalação
 ### Pré requisitos
 
 Para executar o projeto é ncessário ter:
