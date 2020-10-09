@@ -33,7 +33,7 @@ Após o contêiner ser iniciado execute o comando para abrir um terminal no webs
 docker exec -it banco-digital-webserver execute sh
 ```
 
-Dentro do terminal, você estará na pasta `/app`, instale as depedências do projeto com o comando:
+Dentro do terminal, você estará na pasta `/app`, instale as dependências do projeto com o comando:
 
 ```
 composer install
