@@ -1,5 +1,5 @@
 
-# Api Banco Digital
+# API Banco Digital
 > Projeto que simula operações de um banco digital
 
 API que simula operações de um banco digital, utilizando framework Laravel e arquitetura GraphQl.
