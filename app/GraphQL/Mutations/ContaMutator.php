@@ -28,22 +28,27 @@ class ContaMutator {
         $dataBefore = Arr::only($args, ['conta', 'valor']);
         $data['conta'] = $dataBefore['conta'];
 
-        $conta = Conta::where('conta', '=', $data['conta'])->first();
-        $saldoAtual = $conta['saldo'];
+        if ($conta = Conta::where('conta', '=', $data['conta'])->first()) {
+            $saldoAtual = $conta['saldo'];
 
-        if ($saldoAtual < $dataBefore['valor']) {
-            throw new CustomException(
-                'Saldo Insuficiente.'
-            );
-        } else {
-            $data['saldo'] = $saldoAtual - $dataBefore['valor'];
-            if ($conta->update($data)) {
-                return $conta;
-            } else {
+            if ($saldoAtual < $dataBefore['valor']) {
                 throw new CustomException(
-                    'Erro Interno.'
+                        'Saldo Insuficiente.'
                 );
+            } else {
+                $data['saldo'] = $saldoAtual - $dataBefore['valor'];
+                if ($conta->update($data)) {
+                    return $conta;
+                } else {
+                    throw new CustomException(
+                            'Erro Interno.'
+                    );
+                }
             }
+        } else {
+            throw new CustomException(
+                    'Conta Inexistente'
+            );
         }
     }
 
@@ -57,16 +62,21 @@ class ContaMutator {
         $dataBefore = Arr::only($args, ['conta', 'valor']);
         $data['conta'] = $dataBefore['conta'];
 
-        $conta = Conta::where('conta', '=', $data['conta'])->first();
-        $saldoAnterior = $conta['saldo'];
-        $data['saldo'] = $saldoAnterior + $dataBefore['valor'];
+        if ($conta = Conta::where('conta', '=', $data['conta'])->first()) {
+            $saldoAnterior = $conta['saldo'];
+            $data['saldo'] = $saldoAnterior + $dataBefore['valor'];
 
-        if ($conta->update($data)) {
-            return $conta;
+            if ($conta->update($data)) {
+                return $conta;
+            } else {
+                throw new CustomException(
+                        'Erro Interno.'
+                );
+            }
         } else {
             throw new CustomException(
-                    'Erro Interno.'
-                );
+                    'Conta Inexistente'
+            );
         }
     }
 
